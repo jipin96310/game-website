@@ -1,0 +1,908 @@
+
+        
+        <style type="text/css">
+            div.subDiv
+            {
+                margin:auto;
+                width:40%;
+                height:400px;
+                overflow:auto;
+            }         
+            div.name
+            {   
+                word-wrap:break-word;
+                position:relative; 
+            }
+            div.process
+            {
+               position: relative;
+                
+               margin:auto;
+               margin-left:10px;  
+               margin-right:10px;       
+            }
+            </style>
+        
+        <body>    
+            <main>
+             
+                
+                
+                <div class="row"> 
+                    <div class="subDiv border rounded" id = "gameContainer">    
+                        <!--games here-->
+                    </div>
+                    <div class="subDiv border rounded" id = "userContainer">     
+                        <!--users here-->
+                    </div>
+                
+                </div> 
+
+
+                <div class="row">
+                    <div style="width:40%;margin:auto;">
+                        <div id = "addGameButton" class="btn btn-success col-sm-4" style="margin-left:60%;margin-top:10px;" onclick="onShowGamePanel();">
+                            Add Game
+                        </div>
+                    </div>
+                    <div style="width:40%; margin:auto;">
+                        <div id = "addUserButton" class="btn btn-success col-sm-4" style="margin-left:60%;margin-top:10px;" onclick="onShowUserPanel();">
+                            Add User
+                        </div>
+                    </div>
+                </div>
+                <!--start-->
+                
+       <div class="shadow border rounded" style="margin-left:10%; margin-top:1%; margin-bottom:1%; margin-right:10%; height:500px;display: none;" id = "gameAddContainer">  <!--输入搜索信息的form-->
+    <div style="margin:auto; margin-left:40px; margin-top:30px; margin-right:40px">
+            <form action="/games/advanceSearch" method="POST" role="form" id = "addGameForm"> <!--这里得改action到对应的地方-->
+                 <div class="input-group mb-3" style="width:20%">
+                <div class="input-group-prepend"> 
+                    <span class="input-group-text" id="userName" style="width:100px">Game name</span><!--ID看情况需要更改-->
+                </div>
+                <input type="text" id = "editName" name = "inputName" class="form-control" placeholder="Game name" aria-label="Game name" aria-describedby="gameName"> 
+            </div>
+
+                   <div class="input-group mb-3" style="width:20%">
+                    <div class="input-group-prepend" >
+                        <span class="input-group-text" id="ignRate" style="width:100px">IGN Rate</span> <!--ID看情况需要更改-->
+                    </div>
+                    <input type="text" id = "editRate" name = "inputRate" class="form-control" placeholder="IGN Rate" aria-label="IGN Rate" aria-describedby="ignRate"> 
+            </div>
+
+
+              <div class="input-group mb-3" style="width:60%; "> 
+                    <div class="input-group-prepend" >
+                        <span class="input-group-text" id="inputDescription" style="width:100px">Description</span> <!--ID得改，这里都用inputYear-->
+                    </div>
+                    <input type="text" id = "editDescription" name = "inputDescription" class="form-control" placeholder="Description" aria-label="Description" aria-describedby="Description"> 
+                </div>
+           
+
+
+                  <div>
+            <P>Realease Date</P>
+            </div>
+
+
+
+
+              <div class="row"> 
+
+                 <div class="input-group mb-3" style="width:20%; margin-left:15PX"> 
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" id="inputDay" style="width:70px">Day</span> 
+                    </div>
+                     <input type="text" id = "editDay" name = "inputDay" class="form-control" placeholder="Day" aria-label="Day" aria-describedby="Day"> 
+                </div>
+
+
+
+
+
+                <div class="input-group mb-3" style="width:20%; margin-left:15PX"> 
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" id="inputMonth" style="width:70px">Month</span> 
+                    </div>
+                     <input type="text" id = "editMonth" name = "inputMonth" class="form-control" placeholder="Month" aria-label="Month" aria-describedby="Month"> 
+                </div>
+
+           
+                <div class="input-group mb-3" style="width:20%; margin-left:10px"> 
+                    <div class="input-group-prepend" >
+                        <span class="input-group-text" id="inputYear" style="width:70px">Year</span> 
+                    </div>
+                    <input type="text" id = "editYear" name = "inputYear" class="form-control" placeholder="Year" aria-label="Year" aria-describedby="Year"> 
+                </div>
+            </div>
+
+                <div class="form-row">  
+                    <div class="form-group col-md-3">
+                        <label for="inputDeveloper">Developer</label>
+                        <select name="inputDeveloper" class="form-control">
+                            <option selected value="" id = "editDeveloper">Choose...</option> 
+                              <option value="Arc System Words">Arc System Words</option> 
+                            <option value="Electronic Arts">Electronic Artss</option> 
+                            <option value="Nintendo games">Nintendo games</option> 
+                            <option value="Eric ConcernedApe Barone">Eric ConcernedApe Barone</option> 
+                            <option value="Bandai Namco Games">Bandai Namco Games</option> 
+                            <option value="Santa Monica Studio">Santa Monica Studio</option> 
+                            <option value="Capcom">Capcom</option> 
+                            <option value="Blue Byte">Blue Byte</option> 
+                            <option value="Sega">Sega</option> 
+                            <option value="Ensemble Studios">Ensemble Studios</option> 
+                            <option value="The Sims Studio">The Sims Studio</option> 
+                            <option value="Visual Concepts">Visual Concepts</option> 
+                            <option value="Infinity Ward">Infinity Ward</option> 
+                            <option value="Treyarch">Treyarch</option> 
+                            <option value="Insomniac Games">Insomniac Games</option> 
+                            <option value="Rockstar Studios">Rockstar Studios</option> 
+                            <option value="Toys for Bob">Toys for Bob</option> 
+                            <option value="Quantic Dream">Quantic Dream</option> 
+                       
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputPublisher">Publisher</label>
+                        <select name="inputPublisher" class="form-control">
+                            <option selected value="" id = "editPublisher">Choose...</option> 
+                             
+                            <option value="Bandai Namco Games">Bandai Namco Games</option>
+                            <option value="Electronic Arts">Electronic Arts</option>  
+                            <option value="Nintendo games">Nintendo games</option>  
+                            <option value="Chucklefish Limited">Chucklefish Limited</option>  
+                            <option value="Sony Interactive Entertainment">Sony Interactive Entertainment</option>  
+                            <option value="Ubisoft">Ubisoft</option>  
+                            <option value="Microsoft">Microsoft</option>  
+                            <option value="2K Sports">2K Sports</option>  
+                            <option value="Capcom">Activision</option>  
+                            <option value="RockStar Games">RockStar Games</option>  
+                        </select>
+                    </div>
+                </div>
+                <!--start-->
+                <div class="row">  
+                <div class="input-group mb-3" style="margin-left:15PX">
+                    
+                
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Action</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "geners" value="Action"> 
+                        </div>
+                    </div>
+                    
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Fighting</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "geners" value="Fighting"> 
+                        </div>
+                    </div>
+                    
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Music</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox"  name = "geners" value="Music"> 
+                        </div>
+                    </div>
+
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">RPG</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "geners" value="RPG"> 
+                        </div>
+                    </div>
+
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Shooter</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "geners" value="Shooter"> 
+                        </div>
+                    </div>
+
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Simulation</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "geners" value="Simulation"> 
+                        </div>
+                    </div>
+
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Sports</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "geners" value="Sports"> 
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">  
+                    <div class="input-group mb-3" style="margin-left:30PX">
+                        
+                        
+                        <div class="input-group-prepend" >  
+                            <span class="input-group-text" style="width:100px">Strategy</span>
+                        </div>       
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" name = "geners" value="Strategy"> 
+                            </div>
+                        </div>
+                        
+                        <div class="input-group-prepend" >  
+                            <span class="input-group-text" style="width:100px">2D</span>
+                        </div>       
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" name = "geners" value="2D"> 
+                            </div>
+                        </div>
+                        
+                        <div class="input-group-prepend" >  
+                            <span class="input-group-text" style="width:100px">3D</span>
+                        </div>       
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" name = "geners" value="3D"> 
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+
+
+            
+
+             <div style="position:relative;margin-left:45%;">
+            <div  class="btn btn-primary" onclick="onAddGame();" id = "gameSubmitButton">Submit</div> 
+            </div>
+
+               
+            </form>
+            </div>
+</div>
+
+                       <!--end-->
+                  
+                                <div class="shadow border rounded" style="margin-left:10%; margin-top:50PX; margin-right:10%;height:400px;display: none;" id = "userAddContainer">  <!--输入搜索信息的form-->
+                                    <div style="margin:auto; margin-left:40px; margin-top:30px; margin-right:40px">
+                                       
+                                        
+                                        <form action="/XXXX" method="post" id = "userForm">
+                                            
+                                           
+                                            <div class="input-group mb-3" style="width:50%">
+                                                <div class="input-group-prepend"> 
+                                                    <span class="input-group-text" id="userName" style="width:110px">User name</span>
+                                                </div>
+                                                <input type="text" id = "editUserName"name = "name" class="form-control" placeholder="" aria-label="User name" aria-describedby="userName"> 
+                                               
+                                            </div>
+                        
+                                            
+                                            <div class="input-group mb-3" style="width:50%">
+                                                <div class="input-group-prepend"> 
+                                                    <span class="input-group-text" id="passWord" style="width:110px">Password</span>
+                                                </div>
+                                                <input type="text" id = "editPassWord" name = "password" class="form-control" placeholder="" aria-label="Password" aria-describedby="passWord">
+                                              
+                                            </div>
+                        
+                                        
+                                            
+                                            <div>
+                                                <p>Select Preferences:</p>
+                                            </div>
+                        
+                         <!--start-->
+                    <div class="row">  
+                <div class="input-group mb-3" style="margin-left:15PX">
+                    
+                
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Action</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "preference" value="Action"> 
+                        </div>
+                    </div>
+                    
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Fighting</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "preference" value="Fighting">
+                        </div>
+                    </div>
+                    
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Music</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox"  name = "preference" value="Music"> 
+                        </div>
+                    </div>
+
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">RPG</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "preference" value="RPG"> 
+                        </div>
+                    </div>
+
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Shooter</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "preference" value="Shooter"> 
+                        </div>
+                    </div>
+
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Simulation</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "preference" value="Simulation"> 
+                        </div>
+                    </div>
+
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Sports</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "preference" value="Sports"> 
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">  
+                    <div class="input-group mb-3" style="margin-left:30PX">
+                        
+                        
+                        <div class="input-group-prepend" >  
+                            <span class="input-group-text" style="width:100px">Strategy</span>
+                        </div>       
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" name = "preference" value="Strategy"> 
+                            </div>
+                        </div>
+                        
+                        <div class="input-group-prepend" >  
+                            <span class="input-group-text" style="width:100px">2D</span>
+                        </div>       
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" name = "preference" value="2D"> 
+                            </div>
+                        </div>
+                        
+                        <div class="input-group-prepend" >  
+                            <span class="input-group-text" style="width:100px">3D</span>
+                        </div>       
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" name = "preference" value="3D"> 
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+                        <!--end-->
+                                            <div style="position:relative;margin-left:45%;">
+                                            <div type="submit" class="btn btn-primary" onclick="onAddUser()" id = "userSubmitButton"> Submit</div> 
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>  
+                                       
+            </main>
+
+
+            <script>
+
+feedAllGames();
+feedAllUsers();
+        
+ function feedAllGames(){
+ $.ajax({
+                type:"get",        
+                url:"/games/getAllGames",
+                cache:false,            
+                success:function(json){
+                      
+                      
+                       var container =  document.getElementById("gameContainer");
+                          container.innerHTML = "";
+    	          
+                       //save json to the cahcd Gaame
+     
+                    //automatically generate navgation bar
+                    /*  
+               
+                
+            */
+       
+    
+       
+                   
+                        for(var curn in json){
+                            var rowItem = document.createElement("div");
+                            rowItem.className = "row border";
+
+                            var rowNumber = document.createElement("div");
+                            rowNumber.className = "col-sm-1";
+                            var spanNumber = document.createElement("span");
+                            spanNumber.className = "align-middle";
+                            spanNumber.innerText = parseInt(curn)+1;
+                            rowNumber.appendChild(spanNumber);
+
+                            var rowName = document.createElement("div");
+                            rowName.className = "col-sm-4 name";
+                            var spanName = document.createElement("span");
+                            spanName.className = "align-middle";
+                            spanName.innerText = json[curn].name;
+                            rowName.appendChild(spanName);
+
+                            var rowEdit = document.createElement("div");
+                            rowEdit.className = "col-sm-2 badge badge-info process";
+                            var aEdit = document.createElement("a");
+                            rowEdit.style = "cursor: pointer;";
+                            rowEdit.onclick = new Function("onGameEdit('"+json[curn]._id+"')");
+                            aEdit.innerText = "Edit";
+                            
+                            rowEdit.appendChild(aEdit);
+
+                            var rowDelete = document.createElement("div");
+                            rowDelete.className = "col-sm-2 badge badge-danger process";
+                            var aDelete = document.createElement("a");
+                           
+                            rowDelete.onclick = new Function("onGameDelete('"+json[curn]._id+"')");
+                            rowDelete.style = "cursor: pointer;";
+                            aDelete.innerText = "Delete";
+                            rowDelete.appendChild(aDelete);
+
+
+                            rowItem.appendChild(rowNumber);
+                            rowItem.appendChild(rowName);
+                            rowItem.appendChild(rowEdit);
+                            rowItem.appendChild(rowDelete);
+
+                            container.appendChild(rowItem);
+
+
+  
+                                 
+                      }      
+                               
+                       $(".progress").css("display", "none"); 
+                    
+                },error:function(){}
+               
+            });
+
+ }
+
+ function feedAllUsers(){
+$.ajax({
+                type:"get",        
+                url:"/users/getAllUsers",
+                cache:false,            
+                success:function(json){
+                      
+                      
+                       var container =  document.getElementById("userContainer");
+                          container.innerHTML = "";
+
+                
+       
+                   
+                        for(var curn in json){
+                            var rowItem = document.createElement("div");
+                            rowItem.className = "row border";
+
+                            var rowNumber = document.createElement("div");
+                            rowNumber.className = "col-sm-1";
+                            var spanNumber = document.createElement("span");
+                            spanNumber.className = "align-middle";
+                            spanNumber.innerText = parseInt(curn)+1;
+                            rowNumber.appendChild(spanNumber);
+
+                            var rowName = document.createElement("div");
+                            rowName.className = "col-sm-4 name";
+                            var spanName = document.createElement("span");
+                            spanName.className = "align-middle";
+                            spanName.innerText = json[curn].profile.name;
+                            rowName.appendChild(spanName);
+
+                            var rowEdit = document.createElement("div");
+                            rowEdit.className = "col-sm-2 badge badge-info process";
+                            var aEdit = document.createElement("a");
+                            rowEdit.onclick = new Function("onUserEdit('"+json[curn]._id+"')");
+                            rowEdit.style = "cursor: pointer;";
+                            aEdit.innerText = "Edit";
+                            rowEdit.appendChild(aEdit);
+
+                            var rowDelete = document.createElement("div");
+                            rowDelete.className = "col-sm-2 badge badge-danger process";
+                            var aDelete = document.createElement("a");
+                            rowDelete.onclick = new Function("onUserDelete('"+json[curn]._id+"')");
+                            rowDelete.style = "cursor: pointer;";
+                            aDelete.innerText = "Delete";
+                            rowDelete.appendChild(aDelete);
+
+
+                            rowItem.appendChild(rowNumber);
+                            rowItem.appendChild(rowName);
+                            rowItem.appendChild(rowEdit);
+                            rowItem.appendChild(rowDelete);
+
+                            container.appendChild(rowItem);
+
+
+  
+                                 
+                      }      
+                               
+                       $(".progress").css("display", "none"); 
+                    
+                },error:function(){}
+               
+            });
+ }
+
+function onShowGamePanel(){
+var gameSubmitButton = document.getElementById("gameSubmitButton");
+gameSubmitButton.onclick =  new Function("onAddGame()");
+$("#gameAddContainer").css("display", "block"); 
+$("#userAddContainer").css("display", "none"); 
+
+                  var userNameEdit = document.getElementById("editName");
+                  userNameEdit.value = "";
+                  var ignRateEdit = document.getElementById("editRate");
+                  ignRateEdit.value = "";
+                  var descriptionEdit = document.getElementById("editDescription");
+                  descriptionEdit.value = "";
+                  var dayEdit = document.getElementById("editDay");
+                  dayEdit.value = "";
+                  var monthEdit = document.getElementById("editMonth");
+                  monthEdit.value = "";
+                  var yearEdit = document.getElementById("editYear");
+                  yearEdit.value = "";
+
+
+
+
+
+}
+function onShowUserPanel(){
+var userSubmitButton = document.getElementById("userSubmitButton");  
+userSubmitButton.onclick =  new Function("onAddUser()");
+$("#userAddContainer").css("display", "block"); 
+$("#gameAddContainer").css("display", "none");
+
+}
+
+
+
+function onGameDelete(gameId){
+
+ $.ajax({
+                type:"delete",        
+                url:"/games/deleteGame/"+gameId,
+                cache:false,            
+                success:function(json){
+                      
+                    feedAllGames();
+
+
+                },error:function(){}
+
+  });
+}
+
+
+function onGameEdit(gameId){
+    onShowGamePanel();
+    gameSubmitButton.onclick =  new Function("onGameSubmit('"+gameId+"')");
+
+
+
+ $.ajax({
+                type:"get",        
+                url:"/games/getGameById/"+gameId,
+                cache:false,            
+                success:function(json){
+                  
+
+                 
+                   var userNameEdit = document.getElementById("editName");
+                  userNameEdit.value = json.name;
+                  var ignRateEdit = document.getElementById("editRate");
+                  ignRateEdit.value = json.ignRate;
+                  var descriptionEdit = document.getElementById("editDescription");
+                  descriptionEdit.value = json.description;
+
+                 var mixDate = new Date(json.releaseDate);
+
+
+                  var dayEdit = document.getElementById("editDay");
+                  dayEdit.value = mixDate.getDay();
+                  var monthEdit = document.getElementById("editMonth");
+                  monthEdit.value = mixDate.getMonth();
+                  var yearEdit = document.getElementById("editYear");
+                  yearEdit.value = mixDate.getFullYear();
+
+
+
+
+
+
+
+                },error:function(){}
+
+  });
+}
+function onUserEdit(userId){
+    onShowUserPanel();
+    userSubmitButton.onclick =  new Function("onUserSubmit('"+userId+"')");
+
+
+
+ $.ajax({
+                type:"get",        
+                url:"/users/getUser/"+userId,
+                cache:false,            
+                success:function(json){
+                  
+
+                 var userNameEdit = document.getElementById("editUserName");
+                 //
+                userNameEdit.value = json.profile.name;
+
+
+
+
+
+
+
+                },error:function(){}
+
+  });
+}
+function onGameSubmit(gameId){
+    
+    var a = $('#addGameForm').serializeArray();
+    var newGameObject = { inputName:null,inputDescription:null,inputRate:null,inputDay:null,inputMonth:null,inputYear:null,inputDeveloper:null,inputPublisher:null,geners:[]};
+ for(var curIndex in a){
+                if(a[curIndex].name == "geners"){
+                    newGameObject.geners.push(a[curIndex].value)
+
+                }else{
+                   newGameObject[a[curIndex].name] = a[curIndex].value
+                  
+                }
+
+            }
+
+   
+    if(newGameObject.inputName!=null&&newGameObject.inputDescription!=null&&newGameObject.inputDay!=null&&newGameObject.inputMonth!=null&&newGameObject.inputYear!=null&&newGameObject.inputDeveloper!=null&&newGameObject.inputPublisher!=null){
+
+   
+   
+ $.ajax({
+                type:"post",        
+                url:"/games/updateGameInformation/"+gameId,
+                data:newGameObject,            
+                success:function(json){
+                  
+                  
+                   var userNameEdit = document.getElementById("editName");
+                  userNameEdit.value = "";
+                  var ignRateEdit = document.getElementById("editRate");
+                  ignRateEdit.value = "";
+                  var descriptionEdit = document.getElementById("editDescription");
+                  descriptionEdit.value = "";
+                  var dayEdit = document.getElementById("editDay");
+                  dayEdit.value = "";
+                  var monthEdit = document.getElementById("editMonth");
+                  monthEdit.value = "";
+                  var yearEdit = document.getElementById("editYear");
+                  yearEdit.value = "";
+                  feedAllGames();
+                 
+                 
+
+
+
+                },error:function(){}
+
+  });
+    }else{
+
+        alert("Please provide full info")
+    }
+
+
+}
+
+function onUserSubmit(userId){
+    
+
+    
+ var a = $('#userForm').serializeArray();
+    var newUserObject = { name:null,password:null,preference:[]};
+
+for(var curIndex in a){
+                if(a[curIndex].name == "preference"){
+                    newUserObject.preference.push(a[curIndex].value)
+
+                }else{
+                   newUserObject[a[curIndex].name] = a[curIndex].value
+                  
+                }
+
+            }
+if(newUserObject.name!=null&&newUserObject.password!=null){
+
+   
+   
+ $.ajax({
+                type:"post",        
+                url:"/users/updateUser/"+userId,
+                data:newUserObject,            
+                success:function(json){
+                  
+                  
+                var userNameEdit = document.getElementById("editUserName");
+                userNameEdit.value = "";
+                var userPassWord = document.getElementById("editPassWord");
+                userPassWord.value = "";
+
+                   
+                  feedAllUsers();
+                 
+                 
+
+
+
+                },error:function(){}
+
+  });
+    }else{
+
+        alert("Please provide full info")
+    }
+
+
+}
+
+function onUserDelete(userId){
+
+ $.ajax({
+                type:"delete",        
+                url:"/users/deleteUser/"+userId,
+                cache:false,            
+                success:function(json){
+                      
+                    feedAllUsers();
+
+
+                },error:function(){}
+
+  });
+}
+
+
+function onAddGame(){
+
+    var a = $('#addGameForm').serializeArray();
+    var newGameObject = { inputName:null,inputDescription:null,inputRate:null,inputDay:null,inputMonth:null,inputYear:null,inputDeveloper:null,inputPublisher:null,geners:[]};
+    for(var curIndex in a){
+                if(a[curIndex].name == "geners"){
+                    newGameObject.geners.push(a[curIndex].value)
+
+                }else{
+                   newGameObject[a[curIndex].name] = a[curIndex].value
+                  
+                }
+
+            }
+   
+    if(newGameObject.inputName!=null&&newGameObject.inputDescription!=null&&newGameObject.inputDay!=null&&newGameObject.inputMonth!=null&&newGameObject.inputYear!=null&&newGameObject.inputDeveloper!=null&&newGameObject.inputPublisher!=null){
+
+   
+
+ $.ajax({
+                type:"post",        
+                url:"/games/addGame",
+                data:newGameObject,
+                cache:false,            
+                success:function(json){
+
+
+
+
+
+                    feedAllGames();
+
+
+                },error:function(){}
+
+  });
+  }else{
+
+      alert("Please provide full info");
+  }
+}
+
+
+function onAddUser(){
+
+    var a = $('#userForm').serializeArray();
+    var newUserObject = { name:null,password:null,preference:[]};
+
+for(var curIndex in a){
+                if(a[curIndex].name == "preference"){
+                    newUserObject.preference.push(a[curIndex].value)
+
+                }else{
+                   newUserObject[a[curIndex].name] = a[curIndex].value
+                  
+                }
+
+            }
+if(newUserObject.name!=null&&newUserObject.password!=null){
+    
+
+ $.ajax({
+                type:"post",        
+                url:"/users/addNormalUser",
+                data:newUserObject,
+                cache:false,            
+                success:function(json){
+
+
+                    feedAllUsers();
+
+
+                },error:function(){}
+
+  });
+}else{
+
+
+    alert("Please provide full info");
+}
+}
+
+
+
+
+
+   
+            </script>
+
+</body>
+

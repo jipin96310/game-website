@@ -1,0 +1,101 @@
+
+
+<body>    
+    <main>
+       
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Picture</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Desctiprion</th>
+                    <th scope="col">Rate</th>
+                    <th scope="col"></th>  
+                </tr>
+            </thead>
+            <tbody id="genre-body">
+               
+
+            </tbody>
+        </table>
+        
+       
+        <div>
+            <nav aria-label="Page navigation">   
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" onclick="window.location.href='XXXXX'">Start</a></li>
+                    <li class="page-item"><a class="page-link" onclick="window.location.href='XXXXX'">Previous</a></li>
+                    <li class="page-item"><a class="page-link" onclick="window.location.href='XXXXX'">1</a></li>
+                    <li class="page-item"><a class="page-link" onclick="window.location.href='XXXXX'">2</a></li>
+                    <li class="page-item"><a class="page-link" onclick="window.location.href='XXXXX'">3</a></li>
+                    <li class="page-item"><a class="page-link" onclick="window.location.href='XXXXX'">Next</a></li>
+                    <li class="page-item"><a class="page-link" onclick="window.location.href='XXXXX'">End</a></li>
+                </ul>
+            </nav>
+        </div>       
+
+    </main>
+
+</body>
+<script>
+
+ $.ajax({
+                type:"get",        
+                url:"/games/getAllGames",
+                cache:false,
+                
+              
+                success:function(json){
+
+
+
+                 
+
+                       var container =  document.getElementById("genre-body");
+                         var rowItem = document.createElement("tr");
+                   
+                        
+                        for(var curn in json){
+                                
+                        // <th scope="row">1</th>
+                        var rowLable = document.createElement("th");
+                        rowLable.scope = "row";
+                        rowLable.innerText = curn;
+
+
+                  
+
+
+                        var tdItem = document.createElement("td");
+                        var figureItem= document.createElement("figure");
+                        figureItem.className = "figure";
+                        var divItem = document.createElement("div");
+
+
+
+
+
+
+                              
+                               // imageItem.src = "/public/images/"+json[curn].name+".jpg";
+                              //  imageItem.alt = "Card image cap";
+
+                              //  cardTiltile.innerText = json[curn].name;                                
+                             
+                               // cardText.innerText = json[curn].description;
+                             
+                                //container.appendChild(rowItem);
+                                 
+                                    
+                               $(".progress").css("display", "none");      
+                       }
+                    
+                },error:function(){}
+               
+            });
+
+
+
+</script>

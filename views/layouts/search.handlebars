@@ -1,0 +1,453 @@
+
+<body>    
+    <main>
+        <script>
+
+             $(".progress").css("display", "none"); 
+        </script>
+
+       <div class="shadow border rounded" style="margin-left:10%; margin-top:1%; margin-bottom:1%; margin-right:10%; height:500px;">  <!--form-->
+    <div style="margin:auto; margin-left:40px; margin-top:30px; margin-right:40px">
+            <form action="/games/advanceSearch" method="POST" role="form" id = "searchForm"> 
+                 <div class="input-group mb-3" style="width:20%">
+                <div class="input-group-prepend"> 
+                    <span class="input-group-text" id="userName" style="width:100px">User name</span>
+                </div>
+                <input type="text" name = "inputName" class="form-control" placeholder="User name" aria-label="User name" aria-describedby="userName"> 
+            </div>
+
+                   <div class="input-group mb-3" style="width:20%">
+                    <div class="input-group-prepend" >
+                        <span class="input-group-text" id="ignRate" style="width:100px">IGN Rate</span>
+                    </div>
+                    <input type="text" name = "rate" class="form-control" placeholder="IGN Rate" aria-label="IGN Rate" aria-describedby="ignRate"> 
+            </div>
+
+
+                  <div>
+            <P>Realease Date</P>
+            </div>
+
+              <div class="row">
+                <div class="input-group mb-3" style="width:20%; margin-left:15PX">
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" id="inputMonth" style="width:70px">Month</span>
+                    </div>
+                    <input  type="text" class="form-control" id="inputMonth"> 
+                               
+                    </input>
+                </div>
+
+           
+                <div class="input-group mb-3" style="width:20%; margin-left:10px"> 
+                    <div class="input-group-prepend" >
+                        <span class="input-group-text" id="inputYear" style="width:70px">Year</span> <!--inputYear-->
+                    </div>
+                    <input  type="text" class="form-control"  id="inputyear">  
+                             
+                    </input>
+                </div>
+            </div>
+
+                <div class="form-row">  <!-- publisher-->
+                    <div class="form-group col-md-3">
+                        <label for="inputDeveloper">Developer</label>
+                        <select name="inputDeveloper" class="form-control">
+                            <option selected value="">Choose...</option> 
+                            <option value="Arc System Words">Arc System Words</option> 
+                            <option value="Electronic Arts">Electronic Artss</option> 
+                            <option value="Nintendo games">Nintendo games</option> 
+                            <option value="Eric ConcernedApe Barone">Eric ConcernedApe Barone</option> 
+                            <option value="Bandai Namco Games">Bandai Namco Games</option> 
+                            <option value="Santa Monica Studio">Santa Monica Studio</option> 
+                            <option value="Capcom">Capcom</option> 
+                            <option value="Blue Byte">Blue Byte</option> 
+                            <option value="Sega">Sega</option> 
+                            <option value="Ensemble Studios">Ensemble Studios</option> 
+                            <option value="The Sims Studio">The Sims Studio</option> 
+                            <option value="Visual Concepts">Visual Concepts</option> 
+                            <option value="Infinity Ward">Infinity Ward</option> 
+                            <option value="Treyarch">Treyarch</option> 
+                            <option value="Insomniac Games">Insomniac Games</option> 
+                            <option value="Rockstar Studios">Rockstar Studios</option> 
+                            <option value="Toys for Bob">Toys for Bob</option> 
+                            <option value="Quantic Dream">Quantic Dream</option> 
+                       
+
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputPublisher">Publisher</label>
+                        <select name="inputPublisher" class="form-control">
+                            <option selected value="">Choose...</option> 
+                            <option value="Bandai Namco Games">Bandai Namco Games</option>
+                            <option value="Electronic Arts">Electronic Arts</option>  
+                            <option value="Nintendo games">Nintendo games</option>  
+                            <option value="Chucklefish Limited">Chucklefish Limited</option>  
+                            <option value="Sony Interactive Entertainment">Sony Interactive Entertainment</option>  
+                            <option value="Ubisoft">Ubisoft</option>  
+                            <option value="Microsoft">Microsoft</option>  
+                            <option value="2K Sports">2K Sports</option>  
+                            <option value="Capcom">Activision</option>  
+                            <option value="RockStar Games">RockStar Games</option>  
+                           
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="row"> 
+                <div class="input-group mb-3" style="margin-left:15PX">
+                    
+                  
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Action</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "geners" value="Action"> 
+                        </div>
+                    </div>
+                    
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Fighting</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "geners" value="Fighting"> 
+                        </div>
+                    </div>
+                    
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Music</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox"  name = "geners" value="Music"> 
+                        </div>
+                    </div>
+
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">RPG</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "geners" value="RPG"> 
+                        </div>
+                    </div>
+
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Shooter</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "geners" value="Shooter"> 
+                        </div>
+                    </div>
+
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Simulation</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "geners" value="Simulation"> 
+                        </div>
+                    </div>
+
+                    <div class="input-group-prepend" >  
+                        <span class="input-group-text" style="width:100px">Sports</span>
+                    </div>       
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" name = "geners" value="Sports"> 
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row"> 
+                    <div class="input-group mb-3" style="margin-left:30PX">
+                        
+                       
+                        <div class="input-group-prepend" >  
+                            <span class="input-group-text" style="width:100px">Strategy</span>
+                        </div>       
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" name = "geners" value="Strategy">
+                            </div>
+                        </div>
+                        
+                        <div class="input-group-prepend" >  
+                            <span class="input-group-text" style="width:100px">2D</span>
+                        </div>       
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" name = "geners" value="2D"> 
+                            </div>
+                        </div>
+                        
+                        <div class="input-group-prepend" >  
+                            <span class="input-group-text" style="width:100px">3D</span>
+                        </div>       
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" name = "geners" value="3D"> 
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+
+             <div style="position:relative;margin-left:45%;">
+            <div  class="btn btn-primary" onclick="javascript:onSearch();">Search</div> <!--Search-->
+            </div>
+
+               
+            </form>
+            </div>
+</div>
+
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Picture</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Desctiprion</th>
+                    <th scope="col">Rate</th>
+                    <th scope="col"></th>  
+                </tr>
+            </thead>
+            <tbody id="search-result-body">
+            </tbody>
+        </table>
+
+        <!--game view-->
+    <div id="game-view-mask" class="shadow-mask" onclick="onCloseWindow()"> </div>
+        <div id = "game-view-window" class="hover-window">
+            <div>
+            <table class="table table-striped">
+                <tr>
+                    <td rowspan="6">  <!--。figure。-->
+                        <figure class="figure" >
+                            <img id = "gameImage" src="" class="figure-img img-fluid rounded" alt="{{GameName}} " style="height:300px;width:600px;overflow:hidden;"> 
+                           
+                        </figure>
+                    </td>
+                    <td>Name:</td>
+                    <td id="gameName"></td> 
+                </tr>
+
+                <tr>
+                    <td>IGN Rate:</td>  <!--IGN-->
+                    <td id = "ignRate"></td>
+                </tr>
+
+                <tr>
+                    <td>Release date:</td> 
+                    <td id="releaseDate"></td>
+                </tr>
+
+                <tr>
+                    <td>Developer:</td> 
+                    <td id = "developer"></td>
+                </tr>
+
+                <tr>
+                    <td>Publisher:</td> 
+                    <td id = "publisher"></td>
+                </tr>
+
+                <tr>
+                    <td>Geners:</td>
+                    <td id = "genersA">
+                       
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+      <div class="bg-light text-dark shadow-sm rounded"> 
+            <p>Description:</p>
+            <p id = "description"></p>
+        </div>
+
+           <div class="bg-light text-dark rounded"style="margin:8px;">  
+          <div class="bg-info">
+                <p> Comment here:</p>
+            </div>
+            <form id = "comment-form" name="comment" action="/games/addComment" method="post"> 
+                    <div class="input-group mb-3" style="width:300px;margin-left:20%;">
+                    <div class="input-group-prepend" >
+                        <label class="input-group-text" for="inputRate">Rate</label>
+                    </div>
+                    <select class="custom-select" id="inputRate"name="rateNumber" >
+                        <option selected name="rateNumber" value="">Choose...</option>
+                        <option value="1" name="rateNumber">1</option>
+                        <option value="2" name="rateNumber">2</option>
+                        <option value="3" name="rateNumber">3</option>
+                        <option value="4" name="rateNumber">4</option>
+                        <option value="5" name="rateNumber">5</option>
+                        <option value="6" name="rateNumber">6</option>
+                        <option value="7" name="rateNumber">7</option>
+                        <option value="8" name="rateNumber">8</option>
+                        <option value="9" name="rateNumber">9</option>
+                        <option value="10" name="rateNumber">10</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="width:60%;margin-left:20%;">
+                    <label for="inputComment">Comment:</label>
+                    <textarea class="form-control" id="inputComment" rows="3" name="commentContent" ></textarea>
+                </div>
+
+                <div  id="commentButton" class="submitButton align-right btn btn-primary" onclick="javascript:onComment();" value="{{curUser}}"  >submit</div>
+            </form>
+        </div>
+
+        <div class=" rounded">  
+            <table class="table">
+                <thead >  
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Comments</th>
+                    </tr>
+                </thead>
+              
+                <tbody id = "comment-container">
+               
+              
+                
+                </tbody>
+            </table>
+        </div>
+   
+<!--end-->
+
+    </main>
+    
+
+ <script>
+
+     function onSearch(){
+
+           var a = $('#searchForm').serializeArray() 
+           var dataObject = {
+               inputName:null,inputMonth:null,inputYear:null,inputDeveloper:null,inputPublisher:null,geners:[]
+
+           }
+            for(var curIndex in a){
+                if(a[curIndex].name == "geners"){
+                    dataObject.geners.push(a[curIndex].value)
+
+                }else{
+                   dataObject[a[curIndex].name] = a[curIndex].value
+                  
+                }
+
+            }
+             
+           //inputName,inputMonth,inputYear,inputDeveloper,inputPublisher,inputGeners
+
+ $.ajax({
+                type:"post", 
+                data:dataObject,       
+                url:"/games/advanceSearch",
+                cache:false,            
+                success:function(json){
+                    
+                       var container =  document.getElementById("search-result-body");
+                       container.innerHTML = "";  
+                   
+                   
+                        
+                        for(var curn in json){
+                       
+                    
+
+                          var rowItem = document.createElement("tr");       
+                        // <th scope="row">1</th>
+                        var rowLable = document.createElement("th");
+                        rowLable.scope = "row";
+                        rowLable.innerText = parseFloat(curn)+1;
+
+
+                          
+
+                            
+                        var tdItem = document.createElement("td");
+                        var figureItem= document.createElement("figure");
+                        figureItem.className = "figure";
+                        var divItem = document.createElement("div");
+                        divItem.style = "height:150px;width:300px;overflow:hidden;"
+                        var imgItem = document.createElement("img");
+                        imgItem.src ="/public/images/"+json[curn].name+".jpg";
+                        imgItem.className = "figure-img img-fluid rounded";
+                        imgItem.alt = json[curn].name;
+
+                    
+                        divItem.appendChild(imgItem);
+                        figureItem.appendChild(divItem);
+                        tdItem.appendChild(figureItem);
+                     
+                        
+                        var tdItem2 = document.createElement("td");                       
+                        var divItem2 = document.createElement("div");
+                        divItem2.innerText =   json[curn].name;
+                        divItem2.style = "margin:50px auto;font-weight:bold;";
+                        tdItem2.appendChild(divItem2)
+  
+
+                        var tdItem3 = document.createElement("td");
+                         var divItem3 = document.createElement("div");
+                        divItem3.innerText =    json[curn].description;
+                        divItem3.style = "margin:50px auto;";
+                        tdItem3.appendChild(divItem3)
+
+
+                         var tdItem4 = document.createElement("td");
+                           var divItem4 = document.createElement("div");
+                        divItem4.innerText =    json[curn].ignRate;
+                        divItem4.style = "margin:50px auto;";
+                        tdItem4.appendChild(divItem4)
+
+
+                        var tdItem5 = document.createElement("td");
+                        var buttonItem = document.createElement("button");
+                        buttonItem.type = "button";
+                        buttonItem.className = "btn btn-info";
+                        buttonItem.onclick = "window.location.href='./XXXX'";
+                        buttonItem.innerText = "Learn More";
+                        buttonItem.style = "margin:50px auto;";
+                        buttonItem.id = json[curn].name;
+                        buttonItem.onclick=new Function("onGame('"+json[curn].name+"')");
+
+                        tdItem5.appendChild(buttonItem);
+
+                        rowItem.appendChild(rowLable);
+                        rowItem.appendChild(tdItem);
+                        rowItem.appendChild(tdItem2);
+                        rowItem.appendChild(tdItem3);
+                        rowItem.appendChild(tdItem4);
+                        rowItem.appendChild(tdItem5);
+                        container.appendChild(rowItem);
+
+                   
+                        
+                                                            
+                       }
+                    
+                },error:function(){}
+               
+            });
+     }
+
+       
+
+</script>
+<script  src="/public/on-game.js"></script>
+
+
+
+</body>

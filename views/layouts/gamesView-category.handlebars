@@ -1,0 +1,292 @@
+<body id = "body-container"> 
+
+   
+    <main>
+       
+
+     
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Picture</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Desctiprion</th>
+                    <th scope="col">Rate</th>
+                    <th scope="col"></th>  
+                </tr>
+            </thead>
+            <tbody id="explore-body" value="{{curCategory}}" >
+               
+
+            </tbody>
+        </table>
+  
+  <div>
+            <nav aria-label="Page navigation" id = "nav-container">   
+              
+            </nav>
+        </div> 
+
+
+
+
+<!--game view-->
+    <div id="game-view-mask" class="shadow-mask" onclick="onCloseWindow()"> </div>
+        <div id = "game-view-window" class="hover-window">
+            <div>
+            <table class="table table-striped">
+                <tr>
+                    <td rowspan="6">  
+                        <figure class="figure" >
+                            <img id = "gameImage" src="" class="figure-img img-fluid rounded" alt="{{GameName}} " style="height:300px;width:600px;overflow:hidden;"> 
+                           
+                        </figure>
+                    </td>
+                    <td>Name:</td>
+                    <td id="gameName"></td> 
+                </tr>
+
+                <tr>
+                    <td>IGN Rate:</td>  
+                    <td id = "ignRate"></td>
+                </tr>
+
+                <tr>
+                    <td>Release date:</td> 
+                    <td id="releaseDate"></td>
+                </tr>
+
+                <tr>
+                    <td>Developer:</td> 
+                    <td id = "developer"></td>
+                </tr>
+
+                <tr>
+                    <td>Publisher:</td>  
+                    <td id = "publisher"></td>
+                </tr>
+
+                <tr>
+                    <td>Genres:</td>
+                    <td id = "genersA">
+                      
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="bg-light text-dark rounded"style="margin:8px;">  
+            <p>Description:</p>
+            <p id = "description"></p>
+        </div>
+
+        <div class="bg-light text-dark rounded">  
+         <div class="bg-info">
+                <p> Comment here:</p>
+            </div>
+            <form id = "comment-form" name="comment" action="/games/addComment" method="post"> 
+                      <div class="input-group mb-3" style="width:300px;margin-left:20%;">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputRate">Rate</label>
+                    </div>
+                    <select class="custom-select" id="inputRate"name="rateNumber" >
+                        <option selected name="rateNumber" value="">Choose...</option>
+                        <option value="1" name="rateNumber">1</option>
+                        <option value="2" name="rateNumber">2</option>
+                        <option value="3" name="rateNumber">3</option>
+                        <option value="4" name="rateNumber">4</option>
+                        <option value="5" name="rateNumber">5</option>
+                        <option value="6" name="rateNumber">6</option>
+                        <option value="7" name="rateNumber">7</option>
+                        <option value="8" name="rateNumber">8</option>
+                        <option value="9" name="rateNumber">9</option>
+                        <option value="10" name="rateNumber">10</option>
+                    </select>
+                </div>
+
+                 <div class="form-group" style="width:60%;margin-left:20%;">
+                    <label for="inputComment">Comment:</label>
+                    <textarea class="form-control" id="inputComment" rows="3" name="commentContent" ></textarea>
+                </div>
+
+                <div  id="commentButton" class="submitButton align-right btn btn-primary" onclick="javascript:onComment();" value="{{curUser}}"  >submit</div>
+            </form>
+        </div>
+
+        <div class=" rounded">  
+            <table class="table">
+                <thead >  
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Comments</th>
+                    </tr>
+                </thead>
+               
+                <tbody id = "comment-container">
+               
+              
+                
+                </tbody>
+            </table>
+        </div>
+   
+<!--end-->
+
+
+        
+     
+<script>   
+     
+    var curGameName = document.getElementById("explore-body").getAttribute("value");
+   
+
+    onInGame(curGameName,-1);
+  
+function onInGame(curGameName,curPage){
+    var searchObject = {curGameName:curGameName,curPage:curPage};
+ $.ajax({
+                type:"post",        
+                url:"/games/categorySearch",
+                data:searchObject,
+                cache:false,            
+                success:function(json){
+                        
+                      
+                       var container =  document.getElementById("explore-body");
+                          container.innerHTML = "";
+
+                        cachedGames = json;//save json to the cahcd Gaame
+
+                    //automatically generate navgation bar
+                    /*  <ul class="pagination">
+                
+                    <li class="page-item"><a class="page-link" onclick="onInGame(curGameName,0);">1</a></li>
+                 
+                
+                </ul>*/
+        if(curPage==-1){
+                var navContainer = document.getElementById("nav-container");
+                navContainer.innerHTML = "";
+                var pagination = document.createElement("ul");
+               pagination.className = "pagination"
+               
+                var pageNumber = json.length/10;
+            
+                
+                for(var i =0;i<pageNumber;i++){
+                    var listItem = document.createElement("li");
+                    listItem.className = "page-item";
+                    var aItem = document.createElement("a");
+                    aItem.className = "page-link";
+                    
+                   aItem.onclick = new Function("onInGame('"+curGameName+"','"+i+"');");
+
+                    aItem.innerText = i+1;
+                    listItem.appendChild(aItem);
+                    pagination.appendChild(listItem);
+                }
+               navContainer.appendChild(pagination);
+        }
+            var renderLength = json.length;
+            if(curPage==-1)renderLength=10;
+                   
+                        
+                        for(var curn =0;curn<renderLength;curn++){
+
+                           
+                          var rowItem = document.createElement("tr"); 
+                         
+                        //  rowItem.onclick = onGame(json[curn].name);     
+                        // <th scope="row">1</th>
+                        var rowLable = document.createElement("th");
+                        rowLable.scope = "row";
+                        rowLable.innerText = parseFloat(curn)+1;
+
+
+                  
+
+
+                        var tdItem = document.createElement("td");
+                        var figureItem= document.createElement("figure");
+                        figureItem.className = "figure";
+                        var divItem = document.createElement("div");
+                        divItem.style = "height:150px;width:300px;overflow:hidden;"
+                        var imgItem = document.createElement("img");
+                        imgItem.src ="/public/images/"+json[curn].name+".jpg";
+                        imgItem.className = "figure-img img-fluid rounded";
+                        imgItem.alt = json[curn].name;
+
+
+                        divItem.appendChild(imgItem);
+                        figureItem.appendChild(divItem);
+                        tdItem.appendChild(figureItem);
+                  
+                        
+                        var tdItem2 = document.createElement("td");                       
+                        var divItem2 = document.createElement("div");
+                        divItem2.innerText =   json[curn].name;
+                        divItem2.style = "margin:50px auto;font-weight:bold;";
+                        tdItem2.appendChild(divItem2)
+
+
+                        var tdItem3 = document.createElement("td");
+                         var divItem3 = document.createElement("div");
+                        divItem3.innerText =    json[curn].description;
+                        divItem3.style = "margin:50px auto;";
+                        tdItem3.appendChild(divItem3)
+
+
+                         var tdItem4 = document.createElement("td");
+                           var divItem4 = document.createElement("div");
+                        divItem4.innerText =    json[curn].ignRate;
+                        divItem4.style = "margin:50px auto;";
+                        tdItem4.appendChild(divItem4)
+
+
+                        var tdItem5 = document.createElement("td");
+                        var buttonItem = document.createElement("button");
+                        buttonItem.type = "button";
+                        buttonItem.className = "btn btn-info";
+                       
+                        buttonItem.innerText = "Learn More";
+                        buttonItem.style = "margin:50px auto;";
+                        buttonItem.id = json[curn].name;
+                        buttonItem.onclick=new Function("onGame('"+json[curn].name+"')");
+                      
+
+                        tdItem5.appendChild(buttonItem);
+
+                        rowItem.appendChild(rowLable);
+                        rowItem.appendChild(tdItem);
+                        rowItem.appendChild(tdItem2);
+                        rowItem.appendChild(tdItem3);
+                        rowItem.appendChild(tdItem4);
+                        rowItem.appendChild(tdItem5);
+                       
+                
+                        container.appendChild(rowItem);
+                        
+                        
+                         $(".progress").css("display", "none"); 
+                      
+                            
+                                 
+                      }      
+                               
+                       
+                    
+                },error:function(){}
+               
+            });
+}
+
+
+
+</script>
+<script  src="/public/on-game.js"></script>
+    </main>
+
+
+    
+</body>

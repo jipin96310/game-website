@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>game website</title>
+    <link rel="stylesheet" href="/public/site.css">
+     <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="/public/signin-hover.js"> </script>
+
+<body>
+ 
+       
+
+      <div id="menu-wrapper">
+
+		  
+		<ul class="menu">
+            <div style="position: absolute;left:100px;">
+                
+			<li onclick="window.location.href= '/'"> <a >Home</a> </li>
+            
+			<li onclick="window.location.href= '/games/category'"> <a>Category</a> </li>
+			<li onclick="window.location.href= '/games/explore'"> <a>Explore</a> </li>
+            
+            </div>
+
+            <div style="position: absolute;right:100px;">
+			<li style="	margin: -0.5em auto;">
+             
+                 <form class="form-inline my-2 my-lg-0" action="/games/gamesView" method="post">
+                        <a href="/games/advanceSearch" style="padding-right:8px;">Advance Search</a>
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="inputName">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                 </form>
+                
+            </li>
+			
+
+			{{#if noSigned}}		
+			<li name="signin-item" > <a name="as">Sign in/Sign up</a> </li>
+            {{/if}}
+            {{#if isAdmin}}		
+			<li name="admin-item" onclick="window.location.href= '/users/adminMode'"> <a name="aa">Admin Mode</a> </li>        
+            {{/if}}
+
+
+            {{#if error}}
+             <li id="error-text" >{{error}}</li>
+            {{/if}}
+
+
+
+            {{#if noSigned}}
+
+            {{else}}
+            <li ><a >{{userName}}</a> </li>
+            <li  onclick="window.location.href= '/users/signout'"><a>Sign Out</a> </li>
+            {{/if}}
+
+            </div>
+		</ul>
+      
+
+
+	</div>
+        <div id="hover-hidden">
+
+
+        </div>
+
+
+	<div id="submenu-wrapper">
+	   <form id="login-form"  action="/users/signin" method="POST" >
+       <div class = "signin-form">
+      
+       <label id="userText">
+        Username:
+       <input id = "name" type="text" name="name" autocomplete="off"  placeholder="Please enter your username" />
+      </label>
+ 	
+        <label id="passText">
+        Password :
+       <input id = "password" type="text" name="password" autocomplete="off"  placeholder="Please enter your password" />
+       </label>
+		
+        <button  class="submit-button button-highlight" type="submit" >SignIn</button>
+       
+   
+       </div>
+
+	   
+    </form>
+	 	<div id="signup-href" style = "position: absolute;left:0;right:0;bottom:20px;"><a href="/users/signup">Don't have account? SignUp</a></div>
+	  
+	</div>
+	<!--login part-->
+    <main>
+    <div class="progress" style="display:visble;">
+  <div id="loadingProgress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+  </div>
+    {{{body}}}
+    </main>
+
+	
+
+
+
+</body>
+</html>
+
+
